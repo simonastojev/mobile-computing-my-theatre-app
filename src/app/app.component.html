@@ -1,0 +1,78 @@
+<ion-app>
+  <ion-menu side="start" contentId="main" menuId="adminMenu" *ngIf="authService.currentUser?.email==='admin@admin.com'">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title color="tertiary">Moje pozorište</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list lines="none">
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/performances">
+            <ion-icon name="document-text" slot="start" color="secondary"></ion-icon>
+            <ion-label>Repertoar</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/admin-users">
+            <ion-icon name="people" slot="start" color="secondary"></ion-icon>
+            <ion-label>Korisnici</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/admin-reservations">
+            <ion-icon name="ticket" slot="start" color="secondary"></ion-icon>
+            <ion-label>Rezervacije</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item (click)="onLogOut()">
+            <ion-icon name="log-out" slot="start" color="secondary"></ion-icon>
+            <ion-label>Odjavite se</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu side="start" contentId="main" menuId="userMenu" *ngIf="authService.currentUser?.email!=='admin@admin.com'">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title color="tertiary">Moje pozorište</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list lines="none">
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/performances">
+            <ion-icon name="document-text" slot="start" color="secondary"></ion-icon>
+            <ion-label>Repertoar</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/contact">
+            <ion-icon name="person-circle" slot="start" color="secondary"></ion-icon>
+            <ion-label>Kontakt</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item (click)="onLogOut()">
+            <ion-icon name="log-out" slot="start" color="secondary"></ion-icon>
+            <ion-label>Odjavite se</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+
+
+</ion-app>

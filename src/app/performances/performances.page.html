@@ -1,0 +1,19 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="repertoire">
+      <ion-icon name="document-text"></ion-icon>
+      <ion-label>Repertoar</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="add-new" *ngIf="authService.currentUser?.email==='admin@admin.com'">
+      <ion-icon name="add-circle"></ion-icon>
+      <ion-label>Dodaj novu predstavu</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="reservations" *ngIf="authService.currentUser?.email!=='admin@admin.com'">
+      <ion-icon name="ticket"></ion-icon>
+      <ion-label>Moje rezervacije</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

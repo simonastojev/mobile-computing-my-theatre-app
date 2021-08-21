@@ -1,0 +1,80 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="welcome" text="" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+  <ion-card class="ion-no-margin">
+    <ion-card-title >
+      Log in
+    </ion-card-title>
+    <ion-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <ion-grid>
+          <ion-row>
+            <ion-img src="assets/images/masks.png" class="image"></ion-img>
+
+            <ion-col size-sm="6" offset-sm="3">
+              <div class="wrapform">
+                <ion-item>
+                  <ion-icon name="mail"></ion-icon>
+                  <ion-input type="text" name="email" formControlName="email" placeholder="Email" required></ion-input>
+                </ion-item>
+
+                <div>
+                  <ng-container *ngFor="let validation of validationUserMessage.email">
+                    <small
+                      *ngIf="loginForm.get('email').hasError(validation.type) &&
+                      (loginForm.get('email').dirty ||
+                      loginForm.get('email').touched)">
+                      {{validation.message}}
+                    </small>
+                  </ng-container>
+                </div>
+
+                <ion-item>
+                  <ion-icon name="lock-closed"></ion-icon>
+                  <ion-input type="password" name="password" formControlName="password" placeholder="Lozinka" required></ion-input>
+                </ion-item>
+
+                <div>
+                  <ng-container *ngFor="let validation of validationUserMessage.password">
+                    <small
+                      *ngIf="loginForm.get('password').hasError(validation.type) &&
+                      (loginForm.get('password').dirty ||
+                      loginForm.get('password').touched)">
+                      {{validation.message}}
+                    </small>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="password-forgot">
+                <ion-button fill="clear" class="ion-no-padding">Zaboravili ste lozinku?</ion-button>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="ion-text-center">
+          <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
+        </div>
+
+        <div class="sign-btn-wrap">
+          <ion-button  type="submit" color="secondary" shape="round" fill="solid" class="sign-btn" [disabled]="!loginForm.valid" *ngIf="!isLoading">Uloguj se</ion-button>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-card-footer">
+    <span>Nemate nalog?</span>
+    <button class="ion-no-padding" (click)="goToRegisterPage()" color="tertiary">Napravite nalog</button>
+  </div>
+
+</ion-content>

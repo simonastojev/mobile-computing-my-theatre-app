@@ -1,0 +1,113 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="welcome" text="" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-color">
+  <ion-card class="ion-no-margin">
+    <ion-card-header>
+      <ion-card-title>
+        Registracija
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Napravite svoj nalog
+        popunjavanjem forme u nastavku
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-img src="assets/images/emotions.jpg" class="image"></ion-img>
+              <ion-item>
+                <ion-icon name="person"></ion-icon>
+                <ion-input name="fullname" type="text" formControlName="fullname"
+                  placeholder="Ime i prezime" required
+                ></ion-input>
+              </ion-item>
+
+              <div>
+                <ng-container *ngFor="let validation of validationUserMessage.fullname">
+                  <small
+                    *ngIf="registerForm.get('fullname').hasError(validation.type) &&
+                    (registerForm.get('fullname').dirty ||
+                    registerForm.get('fullname').touched)">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
+
+              <ion-item>
+                <ion-icon name="call"></ion-icon>
+                <ion-input name="phoneNumber" type="text" formControlName="phoneNumber"
+                  placeholder="Broj telefona" required
+                ></ion-input>
+              </ion-item>
+
+              <div>
+                <ng-container *ngFor="let validation of validationUserMessage.phoneNumber">
+                  <small
+                    *ngIf="registerForm.get('phoneNumber').hasError(validation.type) &&
+                    (registerForm.get('phoneNumber').dirty ||
+                    registerForm.get('phoneNumber').touched)">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
+
+              <ion-item>
+                <ion-icon name="mail"></ion-icon>
+                <ion-input name="email" type="text" formControlName="email"
+                  placeholder="Email" required
+                ></ion-input>
+              </ion-item>
+
+              <div>
+                <ng-container *ngFor="let validation of validationUserMessage.email">
+                  <small
+                    *ngIf="registerForm.get('email').hasError(validation.type) &&
+                    (registerForm.get('email').dirty ||
+                    registerForm.get('email').touched)">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
+
+              <ion-item>
+                <ion-icon name="lock-closed"></ion-icon>
+                <ion-input type="password" name="password" formControlName="password"
+                  placeholder="Lozinka" required
+                ></ion-input>
+              </ion-item>
+
+              <div>
+                <ng-container *ngFor="let validation of validationUserMessage.password">
+                  <small
+                    *ngIf="registerForm.get('password').hasError(validation.type) &&
+                    (registerForm.get('password').dirty ||
+                    registerForm.get('password').touched)">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="sign-btn-wrap">
+          <ion-button type="submit" shape="round" fill="solid" class="sign-btn" [disabled]="!registerForm.valid">Registruj se</ion-button>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
